@@ -6,13 +6,12 @@ function dsl_contact_form_shortcode() {
 
     // In your shortcode (or admin settings page)
     if (!is_user_logged_in()) {
-        return '<p>Please log in before connecting to Dynamics 365.</p>';
+        $oauth = new DSL_OAuth_Handler();
+        $auth_url = $oauth->get_authorization_url();
+        return '<a href="' . esc_url($auth_url) . '" class="button">Login with Dynamics 365</a>';
     }
-    $oauth = new DSL_OAuth_Handler();
-    $auth_url = $oauth->get_authorization_url();
-    echo '<a href="' . esc_url($auth_url) . '" class="button">Login with Dynamics 365</a>';
-    
-    /*$api = new DSL_Dynamics_API();
+    $user = wp_get_current_user();
+    $api = new DSL_Dynamics_API();
     $contact = $api->get_contact_by_email($user->user_email);
     echo "<pre>";print_r($contact);echo "</pre>";
     ob_start(); ?>
@@ -26,7 +25,7 @@ function dsl_contact_form_shortcode() {
         <div id="dsl-message"></div>
     </form>
     <?php
-    return ob_get_clean();*/
+    return ob_get_clean();
 }
 add_shortcode('dynamics_contact_form', 'dsl_contact_form_shortcode');
 

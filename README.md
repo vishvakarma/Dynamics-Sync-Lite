@@ -62,8 +62,11 @@ Delete the user's token from the user meta table in WordPress.
 == Screenshots ==
 
 1. Admin settings page for Dynamics 365 credentials
-2. Frontend user profile form (connected to Dynamics 365)
-3. Login button for Dynamics 365 authentication
+![alt text](image.png)
+2. Login button for Dynamics 365 authentication
+![alt text](image-1.png)
+3. Frontend user profile form 
+![alt text](image-3.png)
 
 == Changelog ==
 
